@@ -15,16 +15,20 @@ def difference(G: Any, H: Any): ...
 def symmetric_difference(G: Any, H: Any): ...
 
 
-
 X = TypeVar('X', covariant=True)
 Y = TypeVar('Y', covariant=True)
 #GT = TypeVar('GT', bound=Graph)
-#TODO: This does not handle the cases when graphs of different types are passed which is allowed
-
-@overload
-def compose(G: DiGraph[X], H: DiGraph[Y]) -> DiGraph[Union[X,Y]]: ...
+# TODO: This does not handle the cases when graphs of different types are
+# passed which is allowed
 
 
 @overload
-def union(G: DiGraph[X], H: DiGraph[Y], rename: Any = ..., name: Optional[Any] = ...) -> DiGraph[Union[X,Y]]: ...
+def compose(G: DiGraph[X], H: DiGraph[Y]) -> DiGraph[Union[X, Y]]: ...
 
+
+@overload
+def union(G: Graph[X],
+          H: Graph[Y],
+          rename: Any = ...,
+          name: Optional[Any] = ...) -> Graph[Union[X,
+                                                    Y]]: ...
